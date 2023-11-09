@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Welcome to your personal AI Chatbot!</title>
+    <style>
+        body {
+            background-image: url('/static/twoRobotsReading.png');
+            background-size: cover;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+        }
+
+        /* Style for the heading */
+        h2 {
+            color: white;
+        }
+
+        /* Style for the submit button */
+        input[type="submit"] {
+            background-color: #4CAF50; /* A green background */
+            color: white; /* White text color */
+            padding: 10px 20px; /* Some padding */
+            border: none; /* No border */
+            border-radius: 5px; /* Rounded corners */
+            cursor: pointer; /* Pointer/hand icon */
+            font-size: 16px; /* Slightly larger font-size */
+            transition: background-color 0.3s ease; /* Smooth background color change on hover */
+            margin-top: 20px; /* Space between the button and the textarea above it */
+            margin-left: 20px; /* Space from the left edge */
+        }
+
+        /* Hover effect for the submit button */
+        input[type="submit"]:hover {
+            background-color: #45a049; /* Darker shade of green */
+        }
+
+        /* Additional margin for textareas */
+        textarea {
+            margin-left: 20px; /* Space from the left edge */
+            margin-bottom: 10px; /* Space between the textareas and anything below */
+        }
+    </style>
+</head>
+<body>
+    <h2>You know the question...</h2>
+    <form method="POST">
+        <textarea name="question" rows="5" cols="100">{{ textQuestion }}</textarea><br>
+        <input type="submit" value="Click for the Answer">
+    </form>
+    <textarea name="answer" rows="5" cols="100">{{ textAnswer }}</textarea><br>
+</body>
+</html>

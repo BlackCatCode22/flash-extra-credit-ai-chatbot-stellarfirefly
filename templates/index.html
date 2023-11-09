@@ -45,8 +45,11 @@
     <h2>You know the question...</h2>
     <form method="POST">
         <textarea name="question" rows="5" cols="100">{{ textQuestion }}</textarea><br>
-        <input type="submit" value="Click for the Answer">
+        <input type="submit" name="prompt" value="Click for the Answer">
     </form>
     <textarea name="answer" rows="5" cols="100">{{ textAnswer }}</textarea><br>
+	<form method="POST">
+		<input type="submit" name="reset" value="New Conversation">
+	</form>
 </body>
 </html>

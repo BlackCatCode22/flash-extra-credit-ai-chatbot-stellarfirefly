@@ -2,6 +2,10 @@ from flask import Flask, request, render_template
 import openai
 import config
 
+#----
+#   Need to create a file config.py and add a line defining
+# OPENAI_API_KEY to your API key. Not included in github.
+#
 openai.api_key = config.OPENAI_API_KEY
 
 app = Flask(__name__)

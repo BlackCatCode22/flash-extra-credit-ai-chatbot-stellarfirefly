@@ -10,6 +10,8 @@ openai.api_key = config.OPENAI_API_KEY
 
 app = Flask(__name__)
 
+message_history = []
+
 # this is what happens when someone starts at the root of the website "/"
 @app.route("/", methods=["GET", "POST"])
 def start_here():
@@ -23,15 +25,16 @@ def start_here():
 
         # Make a request to gpt-3.5-turbo.
         try:
+            new_message_list = message_history
+            new_message_list.append({
+                "role": "user",
+                "content": text_question,
+            })
+            
             # Call the method named create from the Completion class of the OpenAI Python client library.
             response = openai.ChatCompletion.create(
                 model = model_name,
-                messages = [
-                    {
-                        "role": "user",
-                        "content": text_question,
-                    },
-                ],
+                messages = new_message_list,
                 max_tokens = 1000
             )
 
@@ -39,6 +42,11 @@ def start_here():
             print(f"Something unexpected happened. Here is a debugging clue: {e}")
 
         text_answer = response["choices"][0]["message"]["content"]
+        message_history.append({
+            "role": "assistant",
+            "content": response["choices"][0]["message"]["content"],
+        })
+        print(message_history)     # for debugging
 
         return render_template("index.html", textQuestion=text_question, textAnswer=text_answer)
     return render_template("index.html", textQuestion="", textAnswer="")
